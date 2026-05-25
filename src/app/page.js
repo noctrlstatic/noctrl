@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingBag, ArrowRight, CheckCircle2, Search, User, Filter, Tag, Instagram, Loader2, AlertTriangle, X, Mail, Bell, Copy, Check, Send, Plus, Minus, Trash2, CreditCard } from "lucide-react";
+import { ShoppingBag, ArrowRight, CheckCircle2, Search, User, Filter, Tag, Instagram, Loader2, AlertTriangle, X, Mail, Bell, Copy, Check, Send, Plus, Minus, Trash2, CreditCard, Truck } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -31,9 +31,43 @@ export default function FashionResalePlatform() {
   const [copiedCode, setCopiedCode] = useState(false);
   const [subscribedEmail, setSubscribedEmail] = useState("");
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+
+  const [shipping, setShipping] = useState({
+    name: "", address: "", city: "", zip: "", phone: ""
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("success") === "true") {
+      const saved = localStorage.getItem("pending_order");
+      if (saved) {
+        const orderData = JSON.parse(saved);
+        fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: saved
+        }).then(() => {
+          localStorage.removeItem("pending_order");
+          setOrderSuccess(true);
+          setCartItems([]);
+          window.history.replaceState({}, "", "/");
+        }).catch(() => {});
+      } else {
+        setOrderSuccess(true);
+        window.history.replaceState({}, "", "/");
+      }
+    }
+  }, []);
 
   const handleCheckout = async () => {
+    if (!shipping.name || !shipping.address || !shipping.city || !shipping.zip || !shipping.phone) {
+      alert("Compila tutti i campi di spedizione prima di procedere.");
+      return;
+    }
     setCheckoutLoading(true);
+    const orderData = { items: cartItems, shipping, total: cartTotal };
+    localStorage.setItem("pending_order", JSON.stringify(orderData));
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -186,6 +220,14 @@ export default function FashionResalePlatform() {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-[#00ff80] selection:text-black overflow-x-hidden relative">
       
+      {orderSuccess && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[200] bg-[#00ff80] text-black font-bold px-8 py-5 rounded-2xl shadow-[0_0_40px_rgba(0,255,128,0.4)] flex items-center gap-3 text-sm sm:text-base">
+          <CheckCircle2 size={24} />
+          Ordine confermato! Riceverai aggiornamenti sulla spedizione via email.
+          <button onClick={() => setOrderSuccess(false)} className="ml-4 p-1 hover:bg-black/10 rounded-full"><X size={18} /></button>
+        </div>
+      )}
+
       {/* Header */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-header py-4' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -487,6 +529,19 @@ export default function FashionResalePlatform() {
 
               {cartItems.length > 0 && (
                 <div className="p-6 border-t border-white/5 bg-black">
+                  <div className="mb-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Truck size={16} className="text-[#00ff80]" />
+                      <span className="text-xs font-black uppercase tracking-widest text-gray-400">Dati di Spedizione</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input type="text" placeholder="Nome e Cognome" value={shipping.name} onChange={e => setShipping(s => ({...s, name: e.target.value}))} className="sm:col-span-2 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#00ff80]/50 transition-colors placeholder:text-gray-600" />
+                      <input type="text" placeholder="Indirizzo" value={shipping.address} onChange={e => setShipping(s => ({...s, address: e.target.value}))} className="sm:col-span-2 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#00ff80]/50 transition-colors placeholder:text-gray-600" />
+                      <input type="text" placeholder="Città" value={shipping.city} onChange={e => setShipping(s => ({...s, city: e.target.value}))} className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#00ff80]/50 transition-colors placeholder:text-gray-600" />
+                      <input type="text" placeholder="CAP" value={shipping.zip} onChange={e => setShipping(s => ({...s, zip: e.target.value}))} className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#00ff80]/50 transition-colors placeholder:text-gray-600" />
+                      <input type="tel" placeholder="Telefono" value={shipping.phone} onChange={e => setShipping(s => ({...s, phone: e.target.value}))} className="sm:col-span-2 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#00ff80]/50 transition-colors placeholder:text-gray-600" />
+                    </div>
+                  </div>
                   <div className="flex justify-between items-center mb-6">
                     <span className="text-sm font-bold uppercase tracking-widest text-gray-500">Totale</span>
                     <span className="text-3xl font-black text-white">€{cartTotal.toFixed(2)}</span>
