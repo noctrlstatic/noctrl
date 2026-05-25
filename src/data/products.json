@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "name": "Borraccia Termica Intelligente 500ml",
+    "price": 29.9,
+    "oldPrice": 39.9,
+    "category": "Borraccia",
+    "image": "/bottle_hero.png",
+    "images": [
+      "/bottle_hero.png",
+      "/bottle_lifestyle.png",
+      "/bottle_features.png",
+      "/bottiglia.webp"
+    ],
+    "isNew": true,
+    "quantity": 150
+  },
+  {
+    "id": 2,
+    "name": "Pantaloni Uomo Summer Style - Design a Quadri",
+    "price": 29.9,
+    "oldPrice": 39.9,
+    "category": "Bottoms",
+    "image": "/uploads/1779382703490-WhatsApp_Image_2026-05-20_at_11.55.38.jpeg",
+    "images": [
+      "/uploads/1779382703490-WhatsApp_Image_2026-05-20_at_11.55.38.jpeg"
+    ],
+    "isNew": true,
+    "quantity": 4
+  },
+  {
+    "id": 3,
+    "name": "Graphic Tee - Collection 01",
+    "price": 19.9,
+    "oldPrice": 29.9,
+    "category": "T-Shirts",
+    "image": "/uploads/1779382612236-WhatsApp_Image_2026-05-20_at_11.58.56.jpeg",
+    "images": [
+      "/uploads/1779382612236-WhatsApp_Image_2026-05-20_at_11.58.56.jpeg",
+      "/uploads/1779382620047-WhatsApp_Image_2026-05-20_at_11.58.56_(1).jpeg"
+    ],
+    "isNew": true,
+    "quantity": 3
+  },
+  {
+    "id": 4,
+    "name": "Polo Uomo Estiva ",
+    "price": 19.9,
+    "oldPrice": 29.9,
+    "category": "T-Shirts",
+    "image": "/uploads/1779383202693-WhatsApp_Image_2026-04-21_at_14.22.03_(1).jpeg",
+    "images": [
+      "/uploads/1779383202693-WhatsApp_Image_2026-04-21_at_14.22.03_(1).jpeg",
+      "/uploads/1779383206377-WhatsApp_Image_2026-04-21_at_14.22.03.jpeg"
+    ],
+    "isNew": true,
+    "quantity": 3
+  }
+]
