@@ -435,7 +435,7 @@ export default function AdminDashboard() {
                 </div>
                 
                 <h1 className="text-2xl font-black uppercase tracking-tight italic text-white mb-2">
-                  Revive<span className="font-light text-gray-400">Resell</span> <span className="text-sm font-bold text-[#00ff80] uppercase tracking-widest not-italic ml-2 border border-[#00ff80]/20 px-2 py-0.5 rounded">Admin</span>
+                  noctrl<span className="font-light text-gray-400">.it</span> <span className="text-sm font-bold text-[#00ff80] uppercase tracking-widest not-italic ml-2 border border-[#00ff80]/20 px-2 py-0.5 rounded">Admin</span>
                 </h1>
                 
                 <p className="text-gray-400 text-sm mb-8 font-medium">
