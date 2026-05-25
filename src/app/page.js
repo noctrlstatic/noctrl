@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingBag, ArrowRight, CheckCircle2, Search, User, Filter, Tag, Instagram, Loader2, AlertTriangle, X, Mail, Bell, Copy, Check, Send, Plus, Minus, Trash2 } from "lucide-react";
+import { ShoppingBag, ArrowRight, CheckCircle2, Search, User, Filter, Tag, Instagram, Loader2, AlertTriangle, X, Mail, Bell, Copy, Check, Send, Plus, Minus, Trash2, CreditCard } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -30,6 +30,28 @@ export default function FashionResalePlatform() {
   const [showEmailPreview, setShowEmailPreview] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
   const [subscribedEmail, setSubscribedEmail] = useState("");
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  const handleCheckout = async () => {
+    setCheckoutLoading(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: cartItems })
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("Errore: " + (data.error || "Riprova più tardi"));
+      }
+    } catch (err) {
+      alert("Errore di connessione. Riprova.");
+    } finally {
+      setCheckoutLoading(false);
+    }
+  };
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText("WELCOME10");
@@ -470,10 +492,12 @@ export default function FashionResalePlatform() {
                     <span className="text-3xl font-black text-white">€{cartTotal.toFixed(2)}</span>
                   </div>
                   <button 
-                    onClick={() => { alert("Checkout Simulato: Ordine inoltrato con successo! (Demo)"); setCartItems([]); setIsCartOpen(false); }}
-                    className="w-full bg-[#00ff80] text-black shadow-[0_0_20px_rgba(0,255,128,0.2)] hover:shadow-[0_0_30px_rgba(0,255,128,0.5)] font-black py-4.5 rounded-2xl transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 uppercase tracking-wider text-sm"
+                    onClick={handleCheckout}
+                    disabled={checkoutLoading}
+                    className="w-full bg-[#00ff80] text-black shadow-[0_0_20px_rgba(0,255,128,0.2)] hover:shadow-[0_0_30px_rgba(0,255,128,0.5)] font-black py-4.5 rounded-2xl transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 uppercase tracking-wider text-sm disabled:opacity-50"
                   >
-                    Procedi al Pagamento <ArrowRight size={18} />
+                    {checkoutLoading ? "Reindirizzamento..." : "Procedi al Pagamento"}
+                    {checkoutLoading ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
                   </button>
                 </div>
               )}
