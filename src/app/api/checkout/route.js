@@ -19,7 +19,6 @@ export async function POST(req) {
         currency: "eur",
         product_data: {
           name: item.name,
-          images: item.images && item.images.length > 0 ? [item.images[0]] : undefined,
         },
         unit_amount: Math.round(item.price * 100),
       },
