@@ -235,11 +235,11 @@ export default function FashionResalePlatform() {
             <div className="w-8 h-8 rounded-full bg-[#00ff80] flex items-center justify-center shadow-[0_0_15px_rgba(0,255,128,0.3)]">
               <ShoppingBag size={18} className="text-black" />
             </div>
-            <span className="font-bold text-xl tracking-tight text-white uppercase italic">noctrl<span className="font-light text-gray-400">.it</span></span>
+            <span className="font-bold text-xl tracking-tight text-white uppercase italic">Revive<span className="font-light text-gray-400">Resell</span></span>
           </div>
           
           <nav className="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-widest text-gray-400">
-            <a href="#" className="hover:text-[#00ff80] transition-colors">Nuovi Arrivi</a>
+            <a href="#prodotti" className="hover:text-[#00ff80] transition-colors">Nuovi Arrivi</a>
             <a href="#prodotti" className="hover:text-[#00ff80] transition-colors">Collezione</a>
             <a href="#" className="hover:text-[#00ff80] transition-colors">About</a>
           </nav>
@@ -439,7 +439,7 @@ export default function FashionResalePlatform() {
                 <div className="w-8 h-8 rounded-full bg-[#00ff80] flex items-center justify-center">
                   <ShoppingBag size={18} className="text-black" />
                 </div>
-                <span className="font-bold text-xl tracking-tight text-white uppercase italic">noctrl<span className="font-light text-gray-400">.it</span></span>
+                <span className="font-bold text-xl tracking-tight text-white uppercase italic">Revive<span className="font-light text-gray-400">Resell</span></span>
               </div>
               <p className="text-gray-500 max-w-sm mb-8 font-medium leading-relaxed">
                 La destinazione premium per abbigliamento esclusivo e accessori all'avanguardia.

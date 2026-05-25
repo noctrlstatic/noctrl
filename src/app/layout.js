@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "noctrl.it | Abbigliamento Esclusivo & Borracce Smart",
-  description: "La destinazione premium per streetwear selezionato, abbigliamento d'archivio e le innovative Borracce Termiche Intelligenti.",
+  title: "Revive Resell | Abbigliamento Esclusivo & Borracce Smart",
+  description: "La destinazione premium per streetwear selezionato, abbigliamento d'archivio e le innovative Borracce Termiche Intelligenti. Acquista e vendi il tuo stile.",
 };
 
 export default function RootLayout({ children }) {
