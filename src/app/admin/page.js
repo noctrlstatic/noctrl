@@ -202,7 +202,7 @@ export default function AdminDashboard() {
   const handleLogin = (e) => {
     e.preventDefault();
     // Default passcodes: '1234' or 'admin123'
-    if (password === "1234" || password === "admin123") {
+    if (password === "Cosimoricci2004") {
       setIsAuthenticated(true);
       setAuthError("");
       if (rememberMe) {
@@ -474,7 +474,7 @@ export default function AdminDashboard() {
                       />
                       Ricordami su questo browser
                     </label>
-                    <span className="text-[10px] text-gray-600">PIN: 1234</span>
+
                   </div>
 
                   <button 
