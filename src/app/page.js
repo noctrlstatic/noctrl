@@ -32,6 +32,8 @@ export default function FashionResalePlatform() {
   const [subscribedEmail, setSubscribedEmail] = useState("");
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [shipping, setShipping] = useState({
     name: "", address: "", city: "", zip: "", phone: ""
@@ -155,6 +157,15 @@ export default function FashionResalePlatform() {
   }, []);
 
   useEffect(() => {
+    if (!isSearchOpen) return;
+    const handleClick = (e) => {
+      if (!e.target.closest('.search-container')) setIsSearchOpen(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [isSearchOpen]);
+
+  useEffect(() => {
     async function loadProducts() {
       try {
         const res = await fetch("/api/products");
@@ -245,9 +256,57 @@ export default function FashionResalePlatform() {
           </nav>
 
           <div className="flex items-center gap-6">
-            <button className="text-gray-400 hover:text-white transition-colors">
-              <Search size={20} />
-            </button>
+            <div className="relative search-container">
+              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="text-gray-400 hover:text-white transition-colors">
+                <Search size={20} />
+              </button>
+              {isSearchOpen && (
+                <div className="absolute right-0 top-full mt-3 w-80 sm:w-96 bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50">
+                  <div className="p-4 border-b border-white/5">
+                    <input
+                      type="text"
+                      placeholder="Cerca un prodotto..."
+                      value={searchQuery}
+                      onChange={e => setSearchQuery(e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#00ff80]/50 transition-colors placeholder:text-gray-600"
+                      autoFocus
+                    />
+                  </div>
+                  <div className="max-h-72 overflow-y-auto">
+                    {searchQuery.trim() === "" ? (
+                      <div className="p-6 text-center text-gray-500 text-sm font-medium">Inizia a scrivere per cercare...</div>
+                    ) : products.filter(p =>
+                        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        p.category.toLowerCase().includes(searchQuery.toLowerCase())
+                      ).length === 0 ? (
+                      <div className="p-6 text-center text-gray-500 text-sm font-medium">Nessun risultato trovato.</div>
+                    ) : (
+                      products
+                        .filter(p =>
+                          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          p.category.toLowerCase().includes(searchQuery.toLowerCase())
+                        )
+                        .map(product => (
+                          <button
+                            key={product.id}
+                            onClick={() => { setSelectedProduct(product); setIsSearchOpen(false); setSearchQuery(""); }}
+                            className="w-full flex items-center gap-4 px-4 py-3 hover:bg-white/5 transition-colors text-left border-b border-white/5 last:border-0"
+                          >
+                            <div className="w-12 h-16 relative rounded-lg overflow-hidden bg-black flex-shrink-0">
+                              <Image src={product.images?.[0] || product.image} alt={product.name} fill className="object-cover" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-bold text-sm text-white truncate">{product.name}</div>
+                              <div className="text-[10px] font-bold text-[#00ff80] uppercase tracking-widest mt-0.5">{product.category}</div>
+                              <div className="font-extrabold text-sm text-white mt-0.5">€{product.price.toFixed(2)}</div>
+                            </div>
+                          </button>
+                        ))
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
             <button onClick={() => setIsCartOpen(true)} className="text-gray-400 hover:text-white transition-colors relative">
               <ShoppingBag size={20} />
               {cartCount > 0 && (
