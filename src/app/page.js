@@ -12,45 +12,59 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const REVIEWS = [
   {
-    name: "Jake M.",
-    handle: "@jakemartin",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
-    text: "The quality is insane. Got the oversized tee and it's already my go-to. Fit is perfect.",
+    name: "vexhardy",
+    handle: "PROD. VEXHARDY$$",
+    avatar: "/avatars/vexhardy.png",
+    text: "Qualità dei materiali assurda. La t-shirt oversized veste da dio ed è morbidissima. Drop clamoroso, ne prenderò sicuramente un'altra ⛓️",
     stars: 5,
   },
   {
-    name: "Sophia K.",
-    handle: "@sophiak",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80",
-    text: "NOCTRL is different. You can feel the quality the moment you unbox. Already copping the next drop.",
+    name: "_.k3v1n._a_",
+    handle: "🦎 🟣",
+    avatar: "/avatars/kevin.png",
+    text: "Spedizione flash e packaging curato nei minimi dettagli. I cargo pants hanno una vestibilità perfetta. Brand super serio!",
     stars: 5,
   },
   {
-    name: "Marcus T.",
-    handle: "@marcust",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80",
-    text: "Best purchase this year. The cargo fit is unmatched. Shipping was fast too.",
+    name: "argentogiuseppee",
+    handle: "G 🧯",
+    avatar: "/avatars/giuseppe.png",
+    text: "Fit pazzesco, i capi sono minimal ma con quel tocco urban che cercavo. Ormai per me NOCTRL è una garanzia 🔥",
+    stars: 5,
+  },
+  {
+    name: "sgrinfiasette",
+    handle: "Lisa Vellitri",
+    avatar: "/avatars/lisa.png",
+    text: "Ho preso la hoodie heavyweight, tiene caldissimo ed è rifinita in modo impeccabile. Adoro l'attenzione ai dettagli!",
+    stars: 5,
+  },
+  {
+    name: "an_g3lo__nigro",
+    handle: "Angelo",
+    avatar: "/avatars/angelo.png",
+    text: "Capi pazzeschi, i jogger cadono a pennello. Lo stile minimal è perfetto per ogni giorno. Consigliatissimo.",
     stars: 5,
   },
 ];
 
 const LIFESTYLE_ITEMS = [
   {
-    img: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=900&q=80",
+    img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&q=80",
     label: "Night City",
     tag: "After Dark",
     text: "The city never sleeps. Neither does the style.",
     tall: true,
   },
   {
-    img: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80",
     label: "Urban Canvas",
     tag: "Concrete",
     text: "",
     tall: false,
   },
   {
-    img: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&q=80",
+    img: "https://images.unsplash.com/photo-1544441893-675973e36785?w=1200&q=80",
     label: "Editorial",
     tag: "Underground",
     text: "Raw. Real. Unfiltered. This is NOCTRL.",
@@ -61,27 +75,27 @@ const LIFESTYLE_ITEMS = [
 
 const TRENDING_FITS = [
   {
-    img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80",
     title: "Oversized Street Set",
     items: "Essential Tee × Urban Cargo × Sneakers",
   },
   {
-    img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&q=80",
     title: "Dark Layering",
     items: "Hoodie × Cargo Joggers × Beanie",
   },
   {
-    img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?w=600&q=80",
     title: "Monochrome Minimal",
     items: "Oversized Tee × Relaxed Pants × Cap",
   },
   {
-    img: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
     title: "Summer Street Set",
     items: "Tee × Shorts × Accessories",
   },
   {
-    img: "https://images.unsplash.com/photo-1544441893-675973e36785?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=600&q=80",
     title: "90s Revival",
     items: "Oversized Tee × Baggy Denim × Retro",
   },
@@ -357,7 +371,7 @@ export default function NOCTRL() {
             className="fixed top-20 left-1/2 -translate-x-1/2 z-[200] bg-[#d4c5a9] text-black font-bold px-8 py-4 rounded-2xl shadow-[0_0_40px_rgba(212,197,169,0.3)] flex items-center gap-3 text-sm"
           >
             <CheckCircle2 size={22} />
-            Order confirmed! You'll receive shipping updates via email.
+            Order confirmed! You&apos;ll receive shipping updates via email.
             <button onClick={() => setOrderSuccess(false)} className="ml-2 p-1 hover:bg-black/10 rounded-full">
               <X size={16} />
             </button>
@@ -492,7 +506,7 @@ export default function NOCTRL() {
             </p>
             <div className="flex flex-wrap gap-4 animate-fade-up">
               <a
-                href="#products"
+                href="#drop"
                 className="inline-flex items-center gap-2 bg-white text-[#0a0a0a] px-9 py-4 rounded text-[0.7rem] font-bold tracking-[0.12em] uppercase transition-all hover:bg-[#d4c5a9] hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(212,197,169,0.2)]"
               >
                 SHOP NOW
@@ -1011,30 +1025,59 @@ export default function NOCTRL() {
                 clothing for everyday expression.
               </p>
               <div className="flex gap-3 mt-6">
-                {[Instagram, Clock].map((Icon, i) => (
-                  <a
-                    key={i}
-                    href="#"
-                    className="w-10 h-10 rounded-full border border-white/[0.06] flex items-center justify-center text-gray-400 hover:border-[#d4c5a9] hover:bg-[#d4c5a9]/5 transition-all"
-                  >
-                    <Icon size={16} />
-                  </a>
-                ))}
+                <a
+                  href="https://instagram.com/noctrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-white/[0.06] flex items-center justify-center text-gray-400 hover:border-[#d4c5a9] hover:bg-[#d4c5a9]/5 transition-all"
+                >
+                  <Instagram size={16} />
+                </a>
+                <a
+                  href="https://tiktok.com/@noctrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-white/[0.06] flex items-center justify-center text-gray-400 hover:border-[#d4c5a9] hover:bg-[#d4c5a9]/5 transition-all"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16"><path d="M9 12a4 4 0 100 8 4 4 0 000-8zm0 0V4h6v2a4 4 0 004 4v4"/></svg>
+                </a>
+                <a
+                  href="https://twitter.com/noctrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-white/[0.06] flex items-center justify-center text-gray-400 hover:border-[#d4c5a9] hover:bg-[#d4c5a9]/5 transition-all"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                </a>
               </div>
             </div>
 
             {[
               {
                 title: "Quick Links",
-                links: ["Shop All", "New Drop", "Trending", "Our Story"],
+                links: [
+                  { name: "Shop All", href: "#drop" },
+                  { name: "New Drop", href: "#drop" },
+                  { name: "Trending", href: "#drop" },
+                  { name: "Our Story", href: "#story" },
+                ],
               },
               {
                 title: "Support",
-                links: ["Size Guide", "Shipping Info", "Returns", "Contact"],
+                links: [
+                  { name: "Size Guide", href: null },
+                  { name: "Shipping Info", href: null },
+                  { name: "Returns", href: null },
+                  { name: "Contact", href: null },
+                ],
               },
               {
                 title: "Legal",
-                links: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
+                links: [
+                  { name: "Privacy Policy", href: null },
+                  { name: "Terms of Service", href: null },
+                  { name: "Cookie Policy", href: null },
+                ],
               },
             ].map((col) => (
               <div key={col.title}>
@@ -1043,10 +1086,23 @@ export default function NOCTRL() {
                 </h4>
                 <ul className="space-y-3.5">
                   {col.links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">
-                        {link}
-                      </a>
+                    <li key={link.name}>
+                      {link.href ? (
+                        <a href={link.href} className="text-sm text-gray-500 hover:text-white transition-colors">
+                          {link.name}
+                        </a>
+                      ) : (
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            alert(`📄 ${link.name} — pagina in arrivo`);
+                          }}
+                          className="text-sm text-gray-500 hover:text-white transition-colors"
+                        >
+                          {link.name}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

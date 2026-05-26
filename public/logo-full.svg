@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100" fill="none">
+  <!-- ICON SECTION (Left) -->
+  <g transform="translate(10, 0)">
+    <!-- Outer circle with industrial dashed style -->
+    <circle cx="50" cy="50" r="42" stroke="#d4c5a9" stroke-width="4.5" stroke-dasharray="14 7"/>
+    
+    <!-- Stylized geometric chain links tilted at 45 degrees -->
+    <!-- Link 1 (upper left) -->
+    <path d="M34 38 L45 27 C48 24, 54 24, 57 27 L62 32 C65 35, 65 41, 62 44 L50 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+    
+    <!-- Link 2 (lower right) -->
+    <path d="M50 44 L38 56 C35 59, 35 65, 38 68 L43 73 C46 76, 52 76, 55 73 L66 62" stroke="white" stroke-width="7" stroke-linecap="round"/>
+    
+    <!-- Central slash break / industrial accent -->
+    <circle cx="50" cy="50" r="3.5" fill="#d4c5a9"/>
+  </g>
+
+  <!-- WORDMARK SECTION (Right - Outlined Paths) -->
+  <g stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <!-- N -->
+    <path d="M125 75 L125 25 L165 75 L165 25"/>
+    
+    <!-- O -->
+    <path d="M190 35 L190 65 A10 10 0 0 0 200 75 L215 75 A10 10 0 0 0 225 65 L225 35 A10 10 0 0 0 215 25 L200 25 A10 10 0 0 0 190 35 Z"/>
+    
+    <!-- C -->
+    <path d="M285 25 L260 25 A10 10 0 0 0 250 35 L250 65 A10 10 0 0 0 260 75 L285 75"/>
+    
+    <!-- T -->
+    <path d="M305 25 L345 25 M325 25 L325 75"/>
+    
+    <!-- R -->
+    <path d="M365 75 L365 25 L392 25 A10 10 0 0 1 402 35 L402 43 A10 10 0 0 1 392 51 L365 51 M382 51 L402 75"/>
+    
+    <!-- L -->
+    <path d="M425 25 L425 75 L465 75"/>
+  </g>
+</svg>

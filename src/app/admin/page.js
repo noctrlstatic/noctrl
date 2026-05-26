@@ -1425,7 +1425,7 @@ export default function AdminDashboard() {
 
               <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-2">Eliminare Prodotto?</h3>
               <p className="text-gray-400 text-sm mb-8 leading-relaxed">
-                Sei sicuro di voler rimuovere permanentemente <span className="text-white font-bold font-mono">"{deletingProduct.name}"</span>? Questa azione è irreversibile.
+                Sei sicuro di voler rimuovere permanentemente <span className="text-white font-bold font-mono">&ldquo;{deletingProduct.name}&rdquo;</span>? Questa azione è irreversibile.
               </p>
 
               <div className="flex gap-4">

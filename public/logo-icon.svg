@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Outer circle with industrial dashed style -->
+  <circle cx="50" cy="50" r="44" stroke="#d4c5a9" stroke-width="5" stroke-dasharray="16 8"/>
+  
+  <!-- Stylized geometric chain links tilted at 45 degrees -->
+  <!-- Link 1 (upper left) -->
+  <path d="M32 38 L45 25 C49 21, 56 21, 60 25 L65 30 C69 34, 69 41, 65 45 L50 60" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Link 2 (lower right) -->
+  <path d="M50 40 L35 55 C31 59, 31 66, 35 70 L40 75 C44 79, 51 79, 55 75 L68 62" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Central slash break / industrial accent -->
+  <circle cx="50" cy="50" r="4" fill="#d4c5a9"/>
+</svg>

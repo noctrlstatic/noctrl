@@ -8,9 +8,12 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "NOCTRL — Streetwear Essentials",
+  title: "⛓️ NOCTRL — Streetwear Essentials",
   description:
     "Minimal urban clothing built for everyday expression. Premium streetwear with limited drops.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
