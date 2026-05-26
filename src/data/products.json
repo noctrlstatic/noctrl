@@ -1,59 +1,90 @@
 [
   {
     "id": 1,
-    "name": "Borraccia Termica Intelligente 500ml",
+    "name": "NOCTRL Thermal Bottle 500ml",
     "price": 29.9,
     "oldPrice": 39.9,
-    "category": "Borraccia",
+    "category": "Accessories",
     "image": "/bottle_hero.png",
-    "images": [
-      "/bottle_hero.png",
-      "/bottle_lifestyle.png",
-      "/bottle_features.png",
-      "/bottiglia.webp"
-    ],
+    "images": ["/bottle_hero.png","/bottle_lifestyle.png","/bottle_features.png","/bottiglia.webp"],
     "isNew": true,
     "quantity": 150
   },
   {
     "id": 2,
-    "name": "Pantaloni Uomo Summer Style - Design a Quadri",
+    "name": "Summer Cargo Pants",
     "price": 29.9,
     "oldPrice": 39.9,
     "category": "Bottoms",
     "image": "/uploads/1779382703490-WhatsApp_Image_2026-05-20_at_11.55.38.jpeg",
-    "images": [
-      "/uploads/1779382703490-WhatsApp_Image_2026-05-20_at_11.55.38.jpeg"
-    ],
+    "images": ["/uploads/1779382703490-WhatsApp_Image_2026-05-20_at_11.55.38.jpeg"],
     "isNew": true,
     "quantity": 4
   },
   {
     "id": 3,
-    "name": "Graphic Tee - Collection 01",
+    "name": "Essential Graphic Tee",
     "price": 19.9,
     "oldPrice": 29.9,
     "category": "T-Shirts",
     "image": "/uploads/1779382612236-WhatsApp_Image_2026-05-20_at_11.58.56.jpeg",
-    "images": [
-      "/uploads/1779382612236-WhatsApp_Image_2026-05-20_at_11.58.56.jpeg",
-      "/uploads/1779382620047-WhatsApp_Image_2026-05-20_at_11.58.56_(1).jpeg"
-    ],
+    "images": ["/uploads/1779382612236-WhatsApp_Image_2026-05-20_at_11.58.56.jpeg","/uploads/1779382620047-WhatsApp_Image_2026-05-20_at_11.58.56_(1).jpeg"],
     "isNew": true,
     "quantity": 3
   },
   {
     "id": 4,
-    "name": "Polo Uomo Estiva ",
+    "name": "Essential Summer Polo",
     "price": 19.9,
     "oldPrice": 29.9,
     "category": "T-Shirts",
     "image": "/uploads/1779383202693-WhatsApp_Image_2026-04-21_at_14.22.03_(1).jpeg",
-    "images": [
-      "/uploads/1779383202693-WhatsApp_Image_2026-04-21_at_14.22.03_(1).jpeg",
-      "/uploads/1779383206377-WhatsApp_Image_2026-04-21_at_14.22.03.jpeg"
-    ],
+    "images": ["/uploads/1779383202693-WhatsApp_Image_2026-04-21_at_14.22.03_(1).jpeg","/uploads/1779383206377-WhatsApp_Image_2026-04-21_at_14.22.03.jpeg"],
     "isNew": true,
     "quantity": 3
+  },
+  {
+    "id": 5,
+    "name": "Essential Oversized Tee",
+    "price": 59,
+    "oldPrice": null,
+    "category": "T-Shirts",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80",
+    "images": ["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80","https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80"],
+    "isNew": true,
+    "quantity": 12
+  },
+  {
+    "id": 6,
+    "name": "Urban Cargo Fit",
+    "price": 69,
+    "oldPrice": 89,
+    "category": "Bottoms",
+    "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80",
+    "images": ["https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80","https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&q=80"],
+    "isNew": true,
+    "quantity": 8
+  },
+  {
+    "id": 7,
+    "name": "Heavyweight Crew Hoodie",
+    "price": 89,
+    "oldPrice": null,
+    "category": "Hoodies",
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80",
+    "images": ["https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80","https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800&q=80"],
+    "isNew": true,
+    "quantity": 8
+  },
+  {
+    "id": 8,
+    "name": "Cargo Joggers",
+    "price": 79,
+    "oldPrice": null,
+    "category": "Bottoms",
+    "image": "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=800&q=80",
+    "images": ["https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=800&q=80","https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=80"],
+    "isNew": false,
+    "quantity": 15
   }
 ]
