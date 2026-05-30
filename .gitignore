@@ -11,3 +11,6 @@ yarn-error.log*
 Thumbs.db  
 .DS_Store 
 .vercel
+_static_backup/
+graphify-out/
+graphify/

@@ -1,26 +1,8 @@
 import { NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
+import { supabase } from "@/lib/supabase";
 
-const filePath = path.join(process.cwd(), "src/data/subscribers.json");
-
-// Helper function to validate email address
 function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-async function readSubscribers() {
-  try {
-    const data = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    return [];
-  }
-}
-
-async function writeSubscribers(subscribers) {
-  await fs.writeFile(filePath, JSON.stringify(subscribers, null, 2), "utf-8");
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 export async function POST(req) {
@@ -38,24 +20,19 @@ export async function POST(req) {
       return NextResponse.json({ error: "Inserisci un indirizzo email valido" }, { status: 400 });
     }
 
-    const subscribers = await readSubscribers();
-
-    // Check if email already exists
-    const exists = subscribers.some(s => s.email === cleanEmail);
-    if (exists) {
+    const { data: existing } = await supabase.from("subscribers").select("id").eq("email", cleanEmail).single();
+    if (existing) {
       return NextResponse.json({ error: "Questo indirizzo email è già registrato nel network" }, { status: 400 });
     }
 
-    const newSubscriber = {
-      id: Date.now(),
+    const { data, error } = await supabase.from("subscribers").insert({
       email: cleanEmail,
-      date: new Date().toISOString()
-    };
+      date: new Date().toISOString(),
+    }).select().single();
 
-    subscribers.push(newSubscriber);
-    await writeSubscribers(subscribers);
+    if (error) throw error;
 
-    return NextResponse.json({ success: true, subscriber: newSubscriber }, { status: 201 });
+    return NextResponse.json({ success: true, subscriber: data }, { status: 201 });
   } catch (error) {
     console.error("Errore POST /api/subscribe:", error);
     return NextResponse.json({ error: "Impossibile completare la registrazione" }, { status: 500 });

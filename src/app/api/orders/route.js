@@ -1,26 +1,22 @@
 import { NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
+import { requireAdmin } from "@/lib/api-auth";
+import { sendOwnerNotification } from "@/lib/email";
+import { supabase } from "@/lib/supabase";
 
-const filePath = path.join(process.cwd(), "src/data/orders.json");
-
-async function readOrders() {
-  try {
-    const data = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(data);
-  } catch {
-    return [];
+async function decrementStock(items) {
+  for (const item of items) {
+    const { data: product } = await supabase.from("products").select("quantity").eq("id", item.id).single();
+    if (product && product.quantity >= item.cartQty) {
+      await supabase.from("products").update({ quantity: product.quantity - item.cartQty }).eq("id", item.id);
+    }
   }
-}
-
-async function writeOrders(orders) {
-  await fs.writeFile(filePath, JSON.stringify(orders, null, 2), "utf-8");
 }
 
 export async function GET() {
   try {
-    const orders = await readOrders();
-    return NextResponse.json(orders);
+    const { data, error } = await supabase.from("orders").select("*").order("id", { ascending: false });
+    if (error) throw error;
+    return NextResponse.json(data || []);
   } catch {
     return NextResponse.json({ error: "Impossibile recuperare ordini" }, { status: 500 });
   }
@@ -29,24 +25,39 @@ export async function GET() {
 export async function POST(req) {
   try {
     const body = await req.json();
-    const orders = await readOrders();
 
-    const newId = orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1;
+    if (body.stripeSessionId) {
+      const { data: existing } = await supabase.from("orders").select("*").eq("stripeSessionId", body.stripeSessionId).single();
+      if (existing) {
+        return NextResponse.json(existing, { status: 200 });
+      }
+    }
 
-    const order = {
-      id: newId,
+    const { data, error } = await supabase.from("orders").insert({
+      stripeSessionId: body.stripeSessionId || null,
+      customerEmail: body.customerEmail || "",
+      customerName: body.customerName || "",
       items: body.items,
-      shipping: body.shipping,
-      total: body.total,
-      date: new Date().toISOString(),
+      shipping: body.shipping || {},
+      total: body.total || 0,
       status: "In elaborazione",
       tracking: "",
-    };
+    }).select().single();
 
-    orders.push(order);
-    await writeOrders(orders);
+    if (error) throw error;
 
-    return NextResponse.json(order, { status: 201 });
+    await decrementStock(body.items);
+
+    if (body.customerEmail) {
+      sendOwnerNotification({
+        orderId: data.id,
+        customerEmail: body.customerEmail,
+        items: body.items,
+        total: body.total,
+      });
+    }
+
+    return NextResponse.json(data, { status: 201 });
   } catch (error) {
     console.error("Errore POST /api/orders:", error);
     return NextResponse.json({ error: "Impossibile creare ordine" }, { status: 500 });
@@ -54,20 +65,20 @@ export async function POST(req) {
 }
 
 export async function PUT(req) {
+  const authError = requireAdmin(req);
+  if (authError) return authError;
+
   try {
     const body = await req.json();
-    const orders = await readOrders();
-    const index = orders.findIndex(o => o.id === body.id);
 
-    if (index === -1) {
-      return NextResponse.json({ error: "Ordine non trovato" }, { status: 404 });
-    }
+    const updates = {};
+    if (body.status) updates.status = body.status;
+    if (body.tracking !== undefined) updates.tracking = body.tracking;
 
-    if (body.status) orders[index].status = body.status;
-    if (body.tracking !== undefined) orders[index].tracking = body.tracking;
+    const { data, error } = await supabase.from("orders").update(updates).eq("id", body.id).select().single();
+    if (error) throw error;
 
-    await writeOrders(orders);
-    return NextResponse.json(orders[index]);
+    return NextResponse.json(data);
   } catch (error) {
     console.error("Errore PUT /api/orders:", error);
     return NextResponse.json({ error: "Impossibile aggiornare ordine" }, { status: 500 });

@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { requireAdmin } from "@/lib/api-auth";
 
 export async function POST(req) {
+  const authError = requireAdmin(req);
+  if (authError) return authError;
   try {
     const formData = await req.formData();
     const files = formData.getAll("files"); // Multiple files input name "files"
