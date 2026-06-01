@@ -96,6 +96,20 @@ Questo progetto ha un grafo della conoscenza in `graphify-out/`. Vedi `../graphi
 
 ---
 
+## Vercel
+- Progetto rinominato: `sito-web-borraccia` → **`noctrl-store`**
+- Token Vercel salvato in `.env.local` (`VERCEL_TOKEN`)
+- URL attuale: `https://noctrl-store.vercel.app` (alias `sito-web-borraccia.vercel.app`)
+- `NEXT_PUBLIC_SITE_URL` aggiunto in `.env.local`
+
+## Cleanup (1 Giugno 2026)
+- Eliminata dir `sito-web-borraccia/` (vuota)
+- Eliminato `RESTRUCTURE_PLAN.md`
+- Eliminato `tessere NOCTRL.docx`
+- Aggiunto bottone "Aggiungi Prodotto" in ProductTable.js
+- Aggiornato link email da `sito-web-borraccia.vercel.app` a `noctrl-store.vercel.app`
+- Aggiornato `package.json` name: `sito-web-borraccia` → `noctrl-store`
+
 ## Da ricordare
 - **Video Lifestyle** — Devo creare video brevi stile lifestyle/streetwear (tipo reel) e caricarli su `public/uploads/video/` per la sezione in basso della homepage
 - **Header mobile** — Instagram e User/admin ora visibili sempre (rimosso `hidden sm:block`)

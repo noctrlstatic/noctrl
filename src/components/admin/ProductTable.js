@@ -38,6 +38,13 @@ export default function ProductTable({
 
   return (
     <div className="bg-[#0a0a0a] border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl">
+      <div className="flex items-center justify-between px-8 pt-6 pb-2">
+        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{products.length} prodotti nel catalogo</span>
+        <button onClick={onOpenAddModal} className="bg-[#00ff80] text-black px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,255,128,0.3)] transition-all flex items-center gap-2">
+          <Plus size={14} />
+          Aggiungi Prodotto
+        </button>
+      </div>
       <div className="hidden md:block overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>

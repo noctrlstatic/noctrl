@@ -38,7 +38,7 @@ export async function sendOwnerNotification({ orderId, customerEmail, items, tot
       from: FROM,
       to: OWNER,
       subject: `🛒 Nuovo ordine #${orderId} — NOCTRL`,
-      text: `Nuovo ordine ricevuto!\n\nOrdine #${orderId}\nCliente: ${customerEmail}\n\n${itemsText}\n\nTotale: €${Number(total).toFixed(2)}\n\nVai su https://sito-web-borraccia.vercel.app/admin per gestirlo.`,
+      text: `Nuovo ordine ricevuto!\n\nOrdine #${orderId}\nCliente: ${customerEmail}\n\n${itemsText}\n\nTotale: €${Number(total).toFixed(2)}\n\nVai su https://noctrl-store.vercel.app/admin per gestirlo.`,
     });
     console.log(`📧 Notifica owner inviata per ordine #${orderId}`);
   } catch (err) {
